@@ -1,0 +1,51 @@
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.landing {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+}
+
+.landing__booth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.landing__booth-body {
+  position: relative;
+  display: inline-block;
+}
+
+.landing__booth-illustration {
+  display: block;
+  width: clamp(380px, 40vw, 520px);
+}
+
+.landing__enter {
+  position: absolute;
+  left: 63.7%;
+  top: 58.6%;
+  transform: translate(-49%, -50%);
+  padding: 0;
+  margin: 0;
+  border: black solid 4px;
+  /* background: transparent; */
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.landing__enter-image {
+  display: block;
+  width: clamp(100px, 12vw, 140px);  
+}
+
+.landing__enter:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 4px;
+}
