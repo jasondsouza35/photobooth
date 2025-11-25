@@ -49,3 +49,122 @@
   outline: 2px solid #000;
   outline-offset: 4px;
 }
+
+.booth {
+  background-color: #f3f3f3;
+  padding: clamp(32px, 5vw, 64px) clamp(16px, 6vw, 80px);
+}
+
+.booth__scene {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(32px, 6vw, 96px) 0;
+}
+
+.booth__curtain {
+  position: absolute;
+  top: -60px;
+  bottom: -40px;
+  width: clamp(200px, 25vw, 300px);
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.booth__curtain--left {
+  left: clamp(-10px, 4vw, 110px);
+}
+
+.booth__curtain--right {
+  right: clamp(-10px, 4vw, 110px);
+}
+
+.booth__content {
+  position: relative;
+  z-index: 1;
+  width: min(540px, 88vw);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(20px, 3.5vw, 44px);
+}
+
+.booth__camera-head img {
+  width: min(210px, 38vw);
+  display: block;
+}
+
+.booth__screen {
+  position: relative;
+  width: min(440px, 85vw);
+}
+
+.booth__screen-frame {
+  width: 100%;
+  display: block;
+}
+
+.booth__screen-action {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 66%;
+}
+
+.booth__screen-action--top {
+  top: 23%;
+}
+
+.booth__screen-action--bottom {
+  top: 44%;
+}
+
+.booth__controls {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: clamp(16px, 4vw, 36px);
+  width: min(440px, 86vw);
+  margin-top: clamp(10px, 2vw, 28px);
+}
+
+.booth__start {
+  width: min(240px, 55vw);
+  display: block;
+}
+
+.booth__filters {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.booth__filters img {
+  width: min(150px, 32vw);
+  display: block;
+}
+
+.booth__instructions {
+  width: min(540px, 92vw);
+  display: block;
+  margin-top: clamp(22px, 3vw, 40px);
+}
+
+@media (max-width: 640px) {
+  .booth__curtain {
+    width: 120px;
+  }
+
+  .booth__controls {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .booth__filters {
+    flex-direction: column;
+    align-items: center;
+  }
+}

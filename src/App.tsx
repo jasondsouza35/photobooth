@@ -1,47 +1,47 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
-import photoboothClosed from './assets/photobooth/photobooth_closed.svg'
-import photoboothOpen from './assets/photobooth/photobooth_open.svg'
-import enterButton from './assets/photobooth/enter_button.svg'
-import enterButtonHover from './assets/photobooth/enter_button_hover.svg'
+import Landing from './pages/Landing'
+import InsideBooth from './pages/InsideBooth'
+
+type View = 'landing' | 'booth'
+
+const getViewFromLocation = (): View => {
+  if (typeof window === 'undefined') return 'landing'
+  return window.location.pathname === '/inside-booth' ? 'booth' : 'landing'
+}
 
 function App() {
-  const [isHovering, setIsHovering] = useState(false)
+  const [view, setView] = useState<View>(() => getViewFromLocation())
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setView(getViewFromLocation())
+    }
+
+    window.addEventListener('popstate', handlePopState)
+    return () => window.removeEventListener('popstate', handlePopState)
+  }, [])
+
+  const showLanding = view === 'landing'
+
+  const navigateTo = (nextView: View) => {
+    if (typeof window !== 'undefined') {
+      const targetPath = nextView === 'booth' ? '/inside-booth' : '/'
+      if (window.location.pathname !== targetPath) {
+        window.history.pushState({}, '', targetPath)
+      }
+    }
+    setView(nextView)
+  }
 
   const handleEnterClick = () => {
-    // TODO: wire this up to the main app flow (e.g. route change or state)
-    // For now this is just a placeholder so the button is interactive.
-    console.log('Enter photobooth')
+    navigateTo('booth')
   }
 
   return (
-    <main className="landing">
-      <section className="landing__booth" aria-label="Photobooth entrance">
-        <div className="landing__booth-body">
-          <img
-            src={isHovering ? photoboothOpen : photoboothClosed}
-            alt="Photobooth kiosk"
-            className="landing__booth-illustration"
-          />
-
-          <button
-            type="button"
-            className="landing__enter"
-            onMouseEnter={() => setIsHovering(true)}
-            onMouseLeave={() => setIsHovering(false)}
-            onFocus={() => setIsHovering(true)}
-            onBlur={() => setIsHovering(false)}
-            onClick={handleEnterClick}
-          >
-            <img
-              src={isHovering ? enterButtonHover : enterButton}
-              alt="enter"
-              className="landing__enter-image"
-            />
-          </button>
-        </div>
-      </section>
+    <main className={showLanding ? 'landing' : 'booth'}>
+      {showLanding ? <Landing onEnter={handleEnterClick} /> : <InsideBooth />}
     </main>
   )
 }
