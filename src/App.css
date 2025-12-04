@@ -42,7 +42,7 @@
 
 .landing__enter-image {
   display: block;
-  width: clamp(100px, 12vw, 140px);  
+  width: clamp(100px, 12vw, 140px);
 }
 
 .landing__enter:focus-visible {
@@ -57,11 +57,13 @@
 
 .booth__scene {
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: clamp(32px, 6vw, 96px) 0;
+  padding-top: clamp(10px, 2vh, 20px);
+  padding-bottom: 10px;
 }
 
 .booth__curtain {
@@ -84,22 +86,23 @@
 .booth__content {
   position: relative;
   z-index: 1;
-  width: min(540px, 88vw);
+  width: min(400px, 88vw);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(20px, 3.5vw, 44px);
+  gap: clamp(4px, 1vw, 8px);
 }
 
 .booth__camera-head img {
-  width: min(210px, 38vw);
+  width: min(160px, 38vw);
   display: block;
+  transform: translateX(-10px);
 }
 
 .booth__screen {
   position: relative;
-  width: min(440px, 85vw);
+  width: min(340px, 85vw);
 }
 
 .booth__screen-frame {
@@ -127,12 +130,12 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: clamp(16px, 4vw, 36px);
-  width: min(440px, 86vw);
-  margin-top: clamp(10px, 2vw, 28px);
+  width: min(340px, 86vw);
+  margin-top: clamp(4px, 1vw, 8px);
 }
 
 .booth__start {
-  width: min(240px, 55vw);
+  width: min(170px, 55vw);
   display: block;
 }
 
@@ -143,14 +146,14 @@
 }
 
 .booth__filters img {
-  width: min(150px, 32vw);
+  width: min(100px, 32vw);
   display: block;
 }
 
 .booth__instructions {
-  width: min(540px, 92vw);
+  width: min(400px, 92vw);
   display: block;
-  margin-top: clamp(22px, 3vw, 40px);
+  margin-top: clamp(8px, 1.5vw, 12px);
 }
 
 @media (max-width: 640px) {
