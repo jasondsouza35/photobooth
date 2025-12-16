@@ -24,40 +24,36 @@ const InsideBooth = () => (
       aria-hidden="true"
     />
 
-    <div className="booth__content">
-      <div className="booth__camera-head">
-        <img src={cameraState} alt="Camera lens and indicator" />
-      </div>
+    <div className="booth__camera-head">
+      <img src={cameraState} alt="Camera lens and indicator" />
+    </div>
 
-      <div className="booth__screen">
-        <img src={cameraFrame} alt="Camera frame" className="booth__screen-frame" />
-        <img
-          src={takePictureButton}
-          alt="take a picture"
-          className="booth__screen-action booth__screen-action--top"
-        />
-        <img
-          src={uploadPhotoButton}
-          alt="upload photo"
-          className="booth__screen-action booth__screen-action--bottom"
-        />
-      </div>
-
-      <div className="booth__controls">
-        <img src={startButton} alt="start button" className="booth__start" />
-
-        <div className="booth__filters" role="group" aria-label="Photo filters">
-          <img src={colourSliderOff} alt="colour filter" />
-          <img src={blackAndWhiteSliderOn} alt="black and white filter" />
-        </div>
-      </div>
-
+    <div className="booth__screen">
+      <img src={cameraFrame} alt="Camera frame" className="booth__screen-frame" />
       <img
-        src={photoInstructions}
-        alt="Step-by-step photo instructions"
-        className="booth__instructions"
+        src={takePictureButton}
+        alt="take a picture"
+        className="booth__screen-action booth__screen-action--top"
+      />
+      <img
+        src={uploadPhotoButton}
+        alt="upload photo"
+        className="booth__screen-action booth__screen-action--bottom"
       />
     </div>
+
+    <img src={startButton} alt="start button" className="booth__start" />
+
+    <div className="booth__filters" role="group" aria-label="Photo filters">
+      <img src={colourSliderOff} alt="colour filter" className="booth__filter booth__filter--colour" />
+      <img src={blackAndWhiteSliderOn} alt="black and white filter" className="booth__filter booth__filter--bw" />
+    </div>
+
+    <img
+      src={photoInstructions}
+      alt="Step-by-step photo instructions"
+      className="booth__instructions"
+    />
   </section>
 )
 

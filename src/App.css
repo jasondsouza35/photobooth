@@ -3,6 +3,7 @@
   min-height: 100vh;
 }
 
+/* LANDING (unchanged) */
 .landing {
   min-height: 100vh;
   display: flex;
@@ -35,7 +36,6 @@
   padding: 0;
   margin: 0;
   border: black solid 4px;
-  /* background: transparent; */
   cursor: pointer;
   border-radius: 0;
 }
@@ -50,124 +50,263 @@
   outline-offset: 4px;
 }
 
+/* BOOTH PAGE */
 .booth {
-  background-color: #f3f3f3;
-  padding: clamp(32px, 5vw, 64px) clamp(16px, 6vw, 80px);
+  background-color: #f4f4f4;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
 }
 
 .booth__scene {
   position: relative;
+  width: 1440px;
   height: 100vh;
+  min-height: 939px;
+  margin: 0 auto;
   overflow: hidden;
+  background-color: #f4f4f4;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  padding-top: clamp(10px, 2vh, 20px);
-  padding-bottom: 10px;
 }
 
 .booth__curtain {
   position: absolute;
-  top: -60px;
-  bottom: -40px;
-  width: clamp(200px, 25vw, 300px);
-  object-fit: contain;
+  top: 0;
+  height: 100vh;
+  width: 201px;
+  object-fit: cover;
+  object-position: center;
   pointer-events: none;
+  z-index: 0;
 }
 
 .booth__curtain--left {
-  left: clamp(-10px, 4vw, 110px);
+  left: 206px;
 }
 
 .booth__curtain--right {
-  right: clamp(-10px, 4vw, 110px);
+  right: 206px;
+  top: 0;
 }
 
-.booth__content {
-  position: relative;
+.booth__camera-head {
+  position: absolute;
+  left: 625px;
+  top: calc(50vh - 453px);
+  width: 152px;
+  height: 115px;
   z-index: 1;
-  width: min(400px, 88vw);
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: clamp(4px, 1vw, 8px);
 }
 
 .booth__camera-head img {
-  width: min(160px, 38vw);
+  width: 100%;
+  height: 100%;
   display: block;
-  transform: translateX(-10px);
+  object-fit: contain;
 }
 
 .booth__screen {
-  position: relative;
-  width: min(340px, 85vw);
+  position: absolute;
+  left: 558px;
+  top: calc(50vh - 300px);
+  width: 324px;
+  height: 407px;
+  z-index: 1;
 }
 
 .booth__screen-frame {
   width: 100%;
+  height: 100%;
   display: block;
+  object-fit: contain;
 }
 
 .booth__screen-action {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 66%;
+  width: 207px;
+  height: 66px;
+  display: block;
+  object-fit: contain;
 }
 
 .booth__screen-action--top {
-  top: 23%;
+  left: 58px;
+  top: 105px;
 }
 
 .booth__screen-action--bottom {
-  top: 44%;
-}
-
-.booth__controls {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: clamp(16px, 4vw, 36px);
-  width: min(340px, 86vw);
-  margin-top: clamp(4px, 1vw, 8px);
+  left: 58px;
+  top: 204px;
 }
 
 .booth__start {
-  width: min(170px, 55vw);
+  position: absolute;
+  left: 555px;
+  top: calc(50vh + 140px);
+  width: 194px;
+  height: 100px;
   display: block;
+  object-fit: contain;
+  z-index: 1;
 }
 
 .booth__filters {
+  position: absolute;
+  left: 772px;
+  top: calc(50vh + 142px);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 11px;
+  z-index: 1;
 }
 
-.booth__filters img {
-  width: min(100px, 32vw);
+.booth__filter {
+  width: 110px;
+  height: 40px;
   display: block;
+  object-fit: contain;
 }
 
 .booth__instructions {
-  width: min(400px, 92vw);
+  position: absolute;
+  left: 50%;
+  top: calc(50vh + 295px);
+  width: 600px;
+  height: 134px;
   display: block;
-  margin-top: clamp(8px, 1.5vw, 12px);
+  object-fit: contain;
+  z-index: 1;
+  transform: translateX(-50%);
 }
 
-@media (max-width: 640px) {
+/* Responsive adjustments - scale down for smaller screens */
+@media (max-width: 1440px) {
+  .booth__scene {
+    transform: scale(calc(100vw / 1440));
+    transform-origin: center center;
+    width: 1440px;
+  }
+}
+
+/* Scale up for larger screens to keep content centered */
+@media (min-width: 1441px) {
+  .booth__scene {
+    transform: scale(calc(100vw / 1440));
+    transform-origin: center center;
+  }
+}
+
+@media (max-width: 1200px) {
+  .booth__curtain {
+    width: 150px;
+  }
+  
+  .booth__curtain--left {
+    left: max(20px, calc(206px * (100vw / 1440)));
+  }
+  
+  .booth__curtain--right {
+    right: max(20px, calc(206px * (100vw / 1440)));
+  }
+}
+
+@media (max-width: 1024px) {
+  .booth__scene {
+    transform: scale(calc(100vw / 1440));
+    transform-origin: center center;
+  }
+  
   .booth__curtain {
     width: 120px;
   }
+}
 
-  .booth__controls {
+@media (max-width: 900px) {
+  .booth__scene {
+    transform: scale(calc(100vw / 1440));
+    transform-origin: center center;
+  }
+  
+  .booth__curtain {
+    width: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .booth__scene {
+    transform: none;
+    width: 100%;
+    padding: 32px 20px 60px;
+    height: auto;
+    min-height: 100vh;
+    display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+  }
+
+  .booth__curtain {
+    display: none;
+  }
+
+  .booth__camera-head {
+    position: relative;
+    left: auto;
+    top: auto;
+    margin: 0 auto 40px;
+    transform: none;
+  }
+
+  .booth__screen {
+    position: relative;
+    left: auto;
+    top: auto;
+    margin: 0 auto 32px;
+    transform: none;
+    width: min(324px, 90vw);
+    height: auto;
+    aspect-ratio: 324 / 407;
+  }
+
+  .booth__screen-action--top,
+  .booth__screen-action--bottom {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .booth__start {
+    position: relative;
+    left: auto;
+    top: auto;
+    margin: 0 auto 16px;
+    transform: none;
+    width: min(194px, 75vw);
+    height: auto;
   }
 
   .booth__filters {
-    flex-direction: column;
-    align-items: center;
+    position: relative;
+    left: auto;
+    top: auto;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    margin: 0 auto 28px;
+    transform: none;
+    width: auto;
+  }
+
+  .booth__instructions {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 95%;
+    max-width: 600px;
+    height: auto;
+    margin: 0 auto;
+    transform: none;
   }
 }
