@@ -53,30 +53,32 @@
 /* BOOTH PAGE */
 .booth {
   background-color: #f4f4f4;
-  padding: 0;
+  padding: 24px 0;
   display: flex;
   justify-content: center;
+  align-items: center;
   min-height: 100vh;
 }
 
 .booth__scene {
   position: relative;
   width: 1440px;
-  height: 100vh;
-  min-height: 939px;
+  height: 939px;
   margin: 0 auto;
   overflow: hidden;
   background-color: #f4f4f4;
   display: flex;
   align-items: center;
   justify-content: center;
+  transform: scale(min(1, calc((100vw - 48px) / 1440), calc((100vh - 48px) / 939)));
+  transform-origin: center center;
 }
 
 .booth__curtain {
   position: absolute;
   top: 0;
   height: 100vh;
-  width: 201px;
+  width: 208px;
   object-fit: cover;
   object-position: center;
   pointer-events: none;
@@ -84,20 +86,37 @@
 }
 
 .booth__curtain--left {
-  left: 206px;
+  left: 188px;
 }
 
 .booth__curtain--right {
-  right: 206px;
+  right: 188px;
   top: 0;
 }
 
-.booth__camera-head {
+/* Center Column - Controls vertical alignment */
+.booth__center-column {
   position: absolute;
-  left: 625px;
-  top: calc(50vh - 453px);
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 16px;
+  /* Camera head start position */
+  z-index: 1;
+}
+
+.booth__camera-head {
+  position: relative;
+  left: auto;
+  top: auto;
   width: 152px;
   height: 115px;
+  margin-bottom: 34px;
+  /* Gap to screen */
   z-index: 1;
 }
 
@@ -109,12 +128,19 @@
 }
 
 .booth__screen {
-  position: absolute;
-  left: 558px;
-  top: calc(50vh - 300px);
+  position: relative;
+  left: auto;
+  top: auto;
   width: 324px;
   height: 407px;
+  margin-bottom: 18px;
+  /* Gap to start button */
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
 }
 
 .booth__screen-frame {
@@ -122,41 +148,60 @@
   height: 100%;
   display: block;
   object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  pointer-events: none;
 }
 
 .booth__screen-action {
-  position: absolute;
+  position: relative;
   width: 207px;
   height: 66px;
   display: block;
   object-fit: contain;
+  z-index: 3;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }
 
-.booth__screen-action--top {
-  left: 58px;
-  top: 105px;
-}
+/* Removed individual positioning classes as we use flex gap */
 
-.booth__screen-action--bottom {
-  left: 58px;
-  top: 204px;
+/* Grouping container for start + filters */
+.booth__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  /* Space between start button and filters */
+  position: relative;
+  z-index: 1;
+  margin-bottom: 54px;
+  /* Gap to instructions (moved from start button) */
 }
 
 .booth__start {
-  position: absolute;
-  left: 555px;
-  top: calc(50vh + 140px);
+  position: relative;
+  left: auto;
+  top: auto;
   width: 194px;
   height: 100px;
+  margin-bottom: 0;
+  /* Reset margin */
   display: block;
   object-fit: contain;
   z-index: 1;
 }
 
 .booth__filters {
-  position: absolute;
-  left: 772px;
-  top: calc(50vh + 142px);
+  position: relative;
+  /* Reset from absolute */
+  left: auto;
+  top: auto;
+  transform: none;
   display: flex;
   flex-direction: column;
   gap: 11px;
@@ -171,73 +216,19 @@
 }
 
 .booth__instructions {
-  position: absolute;
-  left: 50%;
-  top: calc(50vh + 295px);
+  position: relative;
+  left: auto;
+  top: auto;
   width: 600px;
   height: 134px;
   display: block;
   object-fit: contain;
   z-index: 1;
-  transform: translateX(-50%);
-}
-
-/* Responsive adjustments - scale down for smaller screens */
-@media (max-width: 1440px) {
-  .booth__scene {
-    transform: scale(calc(100vw / 1440));
-    transform-origin: center center;
-    width: 1440px;
-  }
-}
-
-/* Scale up for larger screens to keep content centered */
-@media (min-width: 1441px) {
-  .booth__scene {
-    transform: scale(calc(100vw / 1440));
-    transform-origin: center center;
-  }
-}
-
-@media (max-width: 1200px) {
-  .booth__curtain {
-    width: 150px;
-  }
-  
-  .booth__curtain--left {
-    left: max(20px, calc(206px * (100vw / 1440)));
-  }
-  
-  .booth__curtain--right {
-    right: max(20px, calc(206px * (100vw / 1440)));
-  }
-}
-
-@media (max-width: 1024px) {
-  .booth__scene {
-    transform: scale(calc(100vw / 1440));
-    transform-origin: center center;
-  }
-  
-  .booth__curtain {
-    width: 120px;
-  }
-}
-
-@media (max-width: 900px) {
-  .booth__scene {
-    transform: scale(calc(100vw / 1440));
-    transform-origin: center center;
-  }
-  
-  .booth__curtain {
-    width: 100px;
-  }
+  transform: none;
 }
 
 @media (max-width: 768px) {
   .booth__scene {
-    transform: none;
     width: 100%;
     padding: 32px 20px 60px;
     height: auto;
@@ -246,6 +237,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    transform: none;
   }
 
   .booth__curtain {
@@ -309,4 +301,127 @@
     margin: 0 auto;
     transform: none;
   }
+}
+
+.camera-flash {
+  animation: flashAnimation 0.15s ease-out forwards;
+}
+
+@keyframes flashAnimation {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* RESULT SCREEN */
+.result-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background-color: #f4f4f4; Removed to blend with the original photobooth background */
+  z-index: 10;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.result-screen__timer {
+  width: 300px;
+  margin-bottom: 24px;
+}
+
+.result-screen__timer img {
+  width: 100%;
+  display: block;
+}
+
+.result-screen__body {
+  position: relative;
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.result-screen__holder {
+  width: 100%;
+  display: block;
+  z-index: 2;
+  position: relative;
+}
+
+.result-screen__strip-mask {
+  position: absolute;
+  top: 48%;
+  /* the slit opening is roughly halfway down the holder */
+  left: 10%;
+  width: 80%;
+  height: 50%;
+  overflow: hidden;
+  z-index: 1;
+  /* under the front of the holder, but since it's a mask, it cuts off anything exiting the top bounds */
+}
+
+/* Positioned relative to the mask, slides down inside it */
+.result-screen__strip-container {
+  position: absolute;
+  top: -150%;
+  left: 50%;
+  transform: translateX(-50%) rotate(-4deg);
+  transform-origin: top center;
+  width: 43%;
+  /* fits inside the mask well */
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.result-screen__strip-container.is-printing {
+  animation: dropBounce 0.7s ease-out forwards;
+}
+
+@keyframes dropBounce {
+  0% {
+    top: -150%;
+  }
+
+  60% {
+    top: -25%;
+  }
+
+  80% {
+    top: -50%;
+  }
+
+  100% {
+    top: -40%;
+  }
+}
+
+.result-screen__final-strip {
+  width: 100%;
+  display: block;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.result-screen__pickup {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 300px;
+  transition: opacity 0.3s ease;
+}
+
+.result-screen__pickup img {
+  width: 100%;
+  display: block;
 }
